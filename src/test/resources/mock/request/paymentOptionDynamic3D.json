@@ -1,0 +1,100 @@
+{
+  "sessionToken": "{{sessionToken}}",
+  "merchantId": "{{merchantId}}",
+  "merchantSiteId": "{{merchantSiteId}}",
+  "userTokenId": "petka",
+  "clientUniqueId": "uniqueIdCC",
+  "clientRequestId": "{{clientRequestId}}",
+  "paymentOption": {
+    "card": {
+      "cardNumber": "4012001037141112",
+      "cardHolderName": "test name",
+      "expirationMonth": "01",
+      "expirationYear": "2020",
+      "CVV": "122",
+      "storedCredentials": {
+        "storedCredentialsMode": "0"
+      },
+      "acquirerId": "12",
+      "threeD": {
+        "isDynamic3D": "1",
+        "dynamic3DMode": "on"
+      }
+    },
+    "subMethod": {
+      "subMethod" : "testSubMethod",
+      "referenceId": "refId"
+    }
+  },
+  "isRebilling": "0",
+  "currency": "EUR",
+  "amount": "1.00",
+  "items": [
+    {
+      "name": "watch",
+      "price": "0.50",
+      "quantity": 1
+    },
+    {
+      "name": "color",
+      "price": "0.50",
+      "quantity": 1
+    }
+  ],
+  "deviceDetails": {
+    "deviceType": "DESKTOP",
+    "deviceName": "deviceName",
+    "deviceOS": "deviceOS",
+    "browser": "browser",
+    "ipAddress": "127.0.0.1"
+  },
+  "userDetails": {
+    "firstName": "first_name",
+    "lastName": "last_name",
+    "email": "email@email.com",
+    "phone1": "phone1",
+    "phone2": "phone2",
+    "phone3": "phone3"
+  },
+  "shippingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1340"
+  },
+  "billingAddress": {
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "country": "DE",
+    "state": "",
+    "zip": "1335"
+  },
+  "dynamicDescriptor": {
+    "merchantName": "merchantName",
+    "merchantPhone": "merchantPhone"
+  },
+  "merchantDetails": {
+    "customField1": "merchantName",
+    "customField2": "merchantName",
+    "customField3": "merchantName",
+    "customField4": "merchantName",
+    "customField9": "merchantName"
+  },
+  "addendums": {
+    "localPayment": {
+      "nationalId": "petka",
+      "debitType": "RegularCredit",
+      "firstInstallment": "1",
+      "periodicalInstallment": "1",
+      "numberOfInstallments": "2"
+    }
+  },
+  "urlDetails": {
+    "notificationUrl": "http://webdefence.global.blackspider.com/urlwrap/?q=AXicE2VmaLjDwMB0goGhKKfS2CJJr7ioTC83MTMnOT-vpCg_Ry85P5ehwsjT0tslx8nAyMzU0oAhILUkscjdoTgxLTU5I7EoPRWsKKOkpMBKX7-8vFwvL78kMy0zObEkMz-vtAhshn4A0CyPEt8cBgYG9mMMDABBjic_&Z"
+  },
+  "timeStamp": "{{timestamp}}",
+  "checksum": "{{checksum}}"
+}
