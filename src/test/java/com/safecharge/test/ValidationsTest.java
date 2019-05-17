@@ -9,7 +9,9 @@ import java.util.Map;
 
 import javax.validation.ConstraintViolationException;
 
+import com.safecharge.request.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.safecharge.model.CardData;
@@ -22,35 +24,6 @@ import com.safecharge.model.MerchantInfo;
 import com.safecharge.model.SubMethodDetails;
 import com.safecharge.model.UrlDetails;
 import com.safecharge.model.UserAddress;
-import com.safecharge.request.AddUPOAPMRequest;
-import com.safecharge.request.AddUPOCreditCardByTempTokenRequest;
-import com.safecharge.request.AddUPOCreditCardByTokenRequest;
-import com.safecharge.request.AddUPOCreditCardRequest;
-import com.safecharge.request.Authorization3DRequest;
-import com.safecharge.request.CancelSubscriptionRequest;
-import com.safecharge.request.CardTokenizationRequest;
-import com.safecharge.request.CreateSubscriptionRequest;
-import com.safecharge.request.DeleteUPORequest;
-import com.safecharge.request.EditUPOAPMRequest;
-import com.safecharge.request.EditUPOCreditCardRequest;
-import com.safecharge.request.EnableUPORequest;
-import com.safecharge.request.GetMerchantPaymentMethodsRequest;
-import com.safecharge.request.GetOrderDetailsRequest;
-import com.safecharge.request.GetSessionTokenRequest;
-import com.safecharge.request.GetSubscriptionPlansRequest;
-import com.safecharge.request.GetSubscriptionsListRequest;
-import com.safecharge.request.GetUserUPOsRequest;
-import com.safecharge.request.OpenOrderRequest;
-import com.safecharge.request.Payment3DRequest;
-import com.safecharge.request.PaymentAPMRequest;
-import com.safecharge.request.PaymentCCRequest;
-import com.safecharge.request.PayoutRequest;
-import com.safecharge.request.RefundTransactionRequest;
-import com.safecharge.request.SafechargeBaseRequest;
-import com.safecharge.request.SettleTransactionRequest;
-import com.safecharge.request.SuspendUPORequest;
-import com.safecharge.request.UpdateOrderRequest;
-import com.safecharge.request.VoidTransactionRequest;
 import com.safecharge.request.basic.EditUPOBasicRequest;
 import com.safecharge.util.AddressUtils;
 import com.safecharge.util.Constants;
@@ -651,6 +624,49 @@ public class ValidationsTest {
 
         try {
             SafechargeBaseRequest safechargeRequest = PaymentCCRequest.builder()
+                    .addMerchantInfo(invalidMerchantInfo)
+                    .addItem(dummyInvalidItem)
+                    .addUserDetails(dummyInvalidCashierUserDetails)
+                    .addBillingDetails(dummyInvalidShippingDetails)
+                    .addShippingDetails(dummyInvalidShippingDetails)
+                    .addURLDetails(dummyInvalidUrlDetails)
+                    .addCardData(dummyCardData)
+                    .addUserPaymentOption(null, "12")
+                    .build();
+            fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
+        } catch (ConstraintViolationException e) {
+            assertEquals(17, e.getConstraintViolations()
+                    .size());
+        }
+    }
+
+    @Test
+    @Ignore
+    public void testSuccessfulValidation_PaymentRequest() {
+        SafechargeBaseRequest safechargeRequest = PaymentRequest.builder()
+                .addMerchantInfo(validMerchantInfo)
+                .addCurrency(validCurrencyCode)
+                .addAmount(validAmountTwoItems)
+                .addSessionToken(dummySessionToken)
+                .addItem(dummyValidItem)
+                .addItem(dummyValidItem2)
+                .addUserDetails(dummyValidCashierUserDetails)
+                .addBillingDetails(dummyValidBillingDetails)
+                .addShippingDetails(dummyValidShippingDetails)
+                .addOrderId(dummyOrderId)
+                .addURLDetails(dummyValidUrlDetails)
+                .addTransactionType(Constants.TransactionType.Sale)
+                .addCardData(dummyCardData)
+                .build();
+        assertTrue(safechargeRequest != null);
+    }
+
+    @Test
+    @Ignore
+    public void testFailedValidation_PaymentRequest() {
+
+        try {
+            SafechargeBaseRequest safechargeRequest = PaymentRequest.builder()
                     .addMerchantInfo(invalidMerchantInfo)
                     .addItem(dummyInvalidItem)
                     .addUserDetails(dummyInvalidCashierUserDetails)

@@ -11,6 +11,7 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
+import com.safecharge.response.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -48,34 +49,6 @@ import com.safecharge.request.SuspendUPORequest;
 import com.safecharge.request.UpdateOrderRequest;
 import com.safecharge.request.UpdateUserRequest;
 import com.safecharge.request.VoidTransactionRequest;
-import com.safecharge.response.AddUPOAPMResponse;
-import com.safecharge.response.AddUPOCreditCardByTempTokenResponse;
-import com.safecharge.response.AddUPOCreditCardByTokenResponse;
-import com.safecharge.response.AddUPOCreditCardResponse;
-import com.safecharge.response.Authorization3DResponse;
-import com.safecharge.response.CardTokenizationResponse;
-import com.safecharge.response.DeleteUPOResponse;
-import com.safecharge.response.Dynamic3DResponse;
-import com.safecharge.response.EditUPOAPMResponse;
-import com.safecharge.response.EditUPOCreditCardResponse;
-import com.safecharge.response.EnableUPOResponse;
-import com.safecharge.response.GetMerchantPaymentMethodsResponse;
-import com.safecharge.response.GetOrderDetailsResponse;
-import com.safecharge.response.GetSessionTokenResponse;
-import com.safecharge.response.GetUserDetailsResponse;
-import com.safecharge.response.GetUserUPOsResponse;
-import com.safecharge.response.OpenOrderResponse;
-import com.safecharge.response.Payment3DResponse;
-import com.safecharge.response.PaymentAPMResponse;
-import com.safecharge.response.PaymentCCResponse;
-import com.safecharge.response.PayoutResponse;
-import com.safecharge.response.RefundTransactionResponse;
-import com.safecharge.response.SafechargeResponse;
-import com.safecharge.response.SettleTransactionResponse;
-import com.safecharge.response.SuspendUPOResponse;
-import com.safecharge.response.UpdateOrderResponse;
-import com.safecharge.response.UserResponse;
-import com.safecharge.response.VoidTransactionResponse;
 import com.safecharge.util.ValidationUtils;
 
 /**
@@ -121,6 +94,18 @@ public abstract class BaseTest {
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(Payment3DRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/payment3D.json"), Payment3DResponse.class));
+
+//        when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class))).thenReturn(
+//                gson.fromJson(loadResourceFile("./mock/response/paymentOption3D.json"), PaymentResponse.class));
+//
+//        when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class))).thenReturn(
+//                gson.fromJson(loadResourceFile("./mock/response/paymentOptionAPM.json"), PaymentResponse.class));
+//
+//        when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class))).thenReturn(
+//                gson.fromJson(loadResourceFile("./mock/response/paymentOptionCC.json"), PaymentResponse.class));
+//
+//        when(safechargeRequestExecutor.executeRequest(Mockito.any(PaymentCCRequest.class))).thenReturn(
+//                gson.fromJson(loadResourceFile("./mock/response/paymentOptionDynamic3D.json"), PaymentResponse.class));
 
         when(safechargeRequestExecutor.executeRequest(Mockito.any(Authorization3DRequest.class))).thenReturn(
                 gson.fromJson(loadResourceFile("./mock/response/authorization3D.json"), Authorization3DResponse.class));
