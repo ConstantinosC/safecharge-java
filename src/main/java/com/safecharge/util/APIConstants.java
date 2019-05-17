@@ -29,6 +29,7 @@ public interface APIConstants {
     String CARD_TOKENIZATION_URL = "api/v1/cardTokenization.do";
     String ADD_UPO_CREDIT_CARD_BY_TEMP_TOKEN_URL = "api/v1/addUPOCreditCardByTempToken.do";
     String PAYMENT_3D_URL = "api/v1/payment3D.do";
+    String PAYMENT_URL = "api/v1/payment.do";
     String SETTLE_TRANSACTION_URL = "api/v1/settleTransaction.do";
     String VOID_TRANSACTION_URL = "api/v1/voidTransaction.do";
     String REFUND_TRANSACTION_URL = "api/v1/refundTransaction.do";
