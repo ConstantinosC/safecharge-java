@@ -1,11 +1,11 @@
 package com.safecharge.request;
 
 import com.safecharge.model.*;
-import com.safecharge.request.builder.SafechargeCCBuilder;
+import com.safecharge.request.builder.SafechargeBuilder;
+import com.safecharge.request.builder.SafechargeOrderBuilder;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -31,8 +31,7 @@ import java.util.List;
  * @since 5/13/2019
  */
 @ValidChecksum(orderMappingName = Constants.ChecksumOrderMapping.API_GENERIC_CHECKSUM_MAPPING)
-public class PaymentRequest extends SafechargeRequest {
-
+public class PaymentRequest extends SafechargeOrderDetailsRequest {
 
     /**
      * MerchantOrderID to be used as input parameter in update method and payment methods. The parameter passed to define which merchant order to update.
@@ -47,80 +46,11 @@ public class PaymentRequest extends SafechargeRequest {
     private PaymentOption paymentOption;
 
     /**
-     * The ID of the user token to add to the request.
-     */
-    @Size(max = 255, message = "userTokenId value size must be up to 255 characters")
-    private String userTokenId;
-
-    /**
-     * ID of the transaction in merchant system.
-     */
-    @Size(max = 45, message = "clientUniqueId size must be up to 45 characters long!")
-    protected String clientUniqueId;
-
-    /**
      * Param indicating whether this is a regular transaction (0) or a recurring/re-billing transaction (1).
      */
     @Max(value = 1)
     @Min(value = 0)
     private int isRebilling;
-
-    @Size(max = 3)
-    private String currency;
-
-    @Size(max = 12)
-    private String amount;
-
-    private AmountDetails amountDetails;
-
-    /**
-     * List of items that will be purchased.
-     */
-    @Valid
-    @NotNull
-    @Size(min = 1, message = "Request must have at least one item!")
-    private List<Item> items = new ArrayList<>();
-
-    /**
-     * The details for the device from which the transaction will be made.
-     */
-    @Valid
-    private DeviceDetails deviceDetails;
-
-    /**
-     * Shipping address related to a user's order.
-     */
-    @Valid
-    private UserAddress shippingAddress;
-
-    /**
-     * Billing address related to a user payment option. Since order can contain only one payment option billing address is part of the order parameters.
-     */
-    @Valid
-    private UserAddress billingAddress;
-
-    /**
-     * Merchant descriptor - this is the message(Merchant's name and phone) that the user will see in his payment bank report.
-     */
-    @Valid
-    private DynamicDescriptor dynamicDescriptor;
-
-    /**
-     * Optional custom fields.
-     */
-    @Valid
-    private MerchantDetails merchantDetails;
-
-    /**
-     * This block contain industry specific addendums such as: Local payment, Hotel, Airline etc.
-     */
-    private Addendums addendums;
-
-    /**
-     * Although DMN response can be configured per merchant site, it will allow to dynamically return the DMN to the provided address per request.
-     */
-    @Valid
-    private UrlDetails urlDetails;
 
     @Size(max = 50)
     private String customSiteName;
@@ -131,30 +61,138 @@ public class PaymentRequest extends SafechargeRequest {
     @Size(max = 255)
     private String customData;
 
-    /**
-     * The ID of the original auth transaction.
-     */
-    @NotNull(message = "relatedTransactionId parameter is mandatory!")
-    protected String relatedTransactionId;
+    @Size(max = 19)
+    private String relatedTransactionId;
 
-
-
-
-    public static Builder builder() {
-        return new Builder();
+    public String getOrderId() {
+        return orderId;
     }
 
-    public static class Builder extends SafechargeCCBuilder<PaymentRequest.Builder> {
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
-        /**
-         * Builds the request.
-         *
-         * @return {@link SafechargeRequest} object build from the params set by this builder
-         */
-        @Override
+    public PaymentOption getPaymentOption() {
+        return paymentOption;
+    }
+
+    public void setPaymentOption(PaymentOption paymentOption) {
+        this.paymentOption = paymentOption;
+    }
+
+    public int getIsRebilling() {
+        return isRebilling;
+    }
+
+    public void setIsRebilling(int isRebilling) {
+        this.isRebilling = isRebilling;
+    }
+
+    public String getCustomSiteName() {
+        return customSiteName;
+    }
+
+    public void setCustomSiteName(String customSiteName) {
+        this.customSiteName = customSiteName;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getCustomData() {
+        return customData;
+    }
+
+    public void setCustomData(String customData) {
+        this.customData = customData;
+    }
+
+    public String getRelatedTransactionId() {
+        return relatedTransactionId;
+    }
+
+    public void setRelatedTransactionId(String relatedTransactionId) {
+        this.relatedTransactionId = relatedTransactionId;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PaymentRequest{");
+        sb.append("orderId='").append(orderId).append('\'');
+        sb.append(", paymentOption=").append(paymentOption);
+        sb.append(", isRebilling=").append(isRebilling);
+        sb.append(", customSiteName='").append(customSiteName).append('\'');
+        sb.append(", productId='").append(productId).append('\'');
+        sb.append(", customData='").append(customData).append('\'');
+        sb.append(", relatedTransactionId='").append(relatedTransactionId).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    private PaymentRequest(Builder builder) {
+        this.orderId = builder.orderId;
+        this.paymentOption = builder.paymentOption;
+        this.isRebilling = builder.isRebilling;
+        this.customSiteName = builder.customSiteName;
+        this.productId = builder.productId;
+        this.customData = builder.customData;
+        this.relatedTransactionId = builder.relatedTransactionId;
+    }
+
+    public static class Builder extends SafechargeOrderBuilder<Builder> {
+        private String orderId;
+        private PaymentOption paymentOption;
+        private int isRebilling;
+        private String customSiteName;
+        private String productId;
+        private String customData;
+        private String relatedTransactionId;
+
+        public Builder() {
+        }
+
+        public Builder addOrderId(String orderId) {
+            this.orderId = orderId;
+            return this;
+        }
+
+        public Builder addPaymentOption(PaymentOption paymentOption) {
+            this.paymentOption = paymentOption;
+            return this;
+        }
+
+        public Builder addIsRebilling(int isRebilling) {
+            this.isRebilling = isRebilling;
+            return this;
+        }
+
+        public Builder addCustomSiteName(String customSiteName) {
+            this.customSiteName = customSiteName;
+            return this;
+        }
+
+        public Builder addProductId(String productId) {
+            this.productId = productId;
+            return this;
+        }
+
+        public Builder addCustomData(String customData) {
+            this.customData = customData;
+            return this;
+        }
+
+        public Builder addRelatedTransactionId(String relatedTransactionId) {
+            this.relatedTransactionId = relatedTransactionId;
+            return this;
+        }
+
         public SafechargeBaseRequest build() {
-            PaymentRequest request = new PaymentRequest();
-            return ValidationUtils.validate(super.build(request));
+            return ValidationUtils.validate(new PaymentRequest(this));
         }
     }
 }
