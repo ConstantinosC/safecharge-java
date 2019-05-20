@@ -48,11 +48,24 @@ public class UserAddress {
     @Size(max = APIConstants.COUNTY_MAX_LENGTH, message = "county size must be up to 255 characters long!")
     private String county;
 
-    @Size(max = 50,  message = "address line 2 must be up to 50 characters long!")
+    @Size(max = 50,  message = "shipping address line 2 must be up to 50 characters long!")
     private String shipAddressLine2;
 
-    @Size(max = 50,  message = "address line 3 must be up to 50 characters long!")
+    @Size(max = 50,  message = "shipping address line 3 must be up to 50 characters long!")
     private String shipAddressLine3;
+
+    @Size(max = 1)
+    private String addressMatch;
+
+    @Size(max = 50,  message = "address line 2 must be up to 50 characters long!")
+    private String addressLine2;
+
+    @Size(max = 50,  message = "address line 3 must be up to 50 characters long!")
+    private String addressLine3;
+
+    private String homePhone;
+
+    private String workPhone;
 
     public String getAddress() {
         return address;
@@ -156,5 +169,45 @@ public class UserAddress {
 
     public void setShipAddressLine3(String shipAddressLine3) {
         this.shipAddressLine3 = shipAddressLine3;
+    }
+
+    public String getAddressMatch() {
+        return addressMatch;
+    }
+
+    public void setAddressMatch(String addressMatch) {
+        this.addressMatch = addressMatch;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getAddressLine3() {
+        return addressLine3;
+    }
+
+    public void setAddressLine3(String addressLine3) {
+        this.addressLine3 = addressLine3;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public void setHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
     }
 }
