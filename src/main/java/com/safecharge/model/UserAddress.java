@@ -48,6 +48,12 @@ public class UserAddress {
     @Size(max = APIConstants.COUNTY_MAX_LENGTH, message = "county size must be up to 255 characters long!")
     private String county;
 
+    @Size(max = 50,  message = "address line 2 must be up to 50 characters long!")
+    private String shipAddressLine2;
+
+    @Size(max = 50,  message = "address line 3 must be up to 50 characters long!")
+    private String shipAddressLine3;
+
     public String getAddress() {
         return address;
     }
@@ -134,5 +140,21 @@ public class UserAddress {
 
     public void setCounty(String county) {
         this.county = county;
+    }
+
+    public String getShipAddressLine2() {
+        return shipAddressLine2;
+    }
+
+    public void setShipAddressLine2(String shipAddressLine2) {
+        this.shipAddressLine2 = shipAddressLine2;
+    }
+
+    public String getShipAddressLine3() {
+        return shipAddressLine3;
+    }
+
+    public void setShipAddressLine3(String shipAddressLine3) {
+        this.shipAddressLine3 = shipAddressLine3;
     }
 }
