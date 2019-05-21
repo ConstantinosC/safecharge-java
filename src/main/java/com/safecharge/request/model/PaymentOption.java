@@ -1,4 +1,7 @@
-package com.safecharge.model;
+package com.safecharge.request.model;
+
+import com.safecharge.model.CardData;
+import com.safecharge.model.SubMethodDetails;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -9,7 +12,7 @@ import java.util.Map;
  * Holder for a Payment option(PM) data.
  *
  * @author <a constantinosco@safecharge.com>Constantinos Constantinides</a>
- * @since 4/7/2017
+ * @since 5/21/2019
  */
 public class PaymentOption {
 
