@@ -1,5 +1,7 @@
-package com.safecharge.model;
+package com.safecharge.response.model;
 
+import com.safecharge.model.ExternalToken;
+import com.safecharge.model.ThreeD;
 import com.safecharge.util.APIConstants;
 
 import javax.validation.constraints.Pattern;
@@ -81,7 +83,7 @@ public class Card {
      */
     private String avsCode;
 
-    private ThreeD threeD;
+    private com.safecharge.model.ThreeD threeD;
 
     @Size(max = 20)
     private String status;
@@ -161,7 +163,7 @@ public class Card {
         this.avsCode = avsCode;
     }
 
-    public ThreeD getThreeD() {
+    public com.safecharge.model.ThreeD getThreeD() {
         return threeD;
     }
 
