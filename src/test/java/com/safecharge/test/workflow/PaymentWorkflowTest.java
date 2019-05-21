@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PaymentWorkflowTest  extends BaseTest {
@@ -107,4 +109,38 @@ public class PaymentWorkflowTest  extends BaseTest {
         Assert.assertTrue(response != null);
         Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
     }
+
+    @Test
+    public void test5_payment() {
+        Map<String, String> userAccountDetails = new HashMap<>();
+        userAccountDetails.put("email", "nikolad_safecharge_2@abv.bg");
+        userAccountDetails.put("account_id", "XX362V4DC76VU");
+        SafechargeBaseRequest request = PaymentRequest.builder()
+                .addMerchantInfo(merchantInfo)
+                .addCurrency("EUR")
+                .addAmount("2")
+                .addSessionToken(sessionToken)
+                .addItem("test_item_1", "1", "1")
+                .addItem("test_item_2", "1", "1")
+                .addUserDetails("Test street 1", "Sofia", "BG", "test@test.com", "Test", "Testov", "0884123456",
+                        null, "1000", "1990-01-01","county usr")
+                .addBillingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                        "BG", null, "1000", "0884123456","county billing")
+                .addShippingDetails("Test", "Testov", "test@test.com", "0884123456", "Test street 1", "Sofia",
+                        "BG", null, "1000", "0884123456","county shipping")
+                .addAmountDetails("1.5", "1.0", "1.0", "0.5")
+                .addOrderId(orderId)
+                .addURLDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
+                        "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
+                        "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
+                .addPaymentOption(null)
+                .addUserAccountDetails(userAccountDetails)
+                .build();
+        SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
+
+        Assert.assertTrue(response != null);
+        Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
+
+    }
+
 }
