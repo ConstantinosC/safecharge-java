@@ -1,5 +1,8 @@
 package com.safecharge.response;
 
+
+import com.safecharge.response.model.PaymentOption;
+
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
  * <p>
@@ -10,6 +13,8 @@ package com.safecharge.response;
  * @since 5/13/2019
  */
 public class PaymentResponse extends PaymentsResponse {
+
+    private PaymentOption paymentOption;
 
     @Override
     public String toString() {

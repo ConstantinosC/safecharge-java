@@ -81,5 +81,107 @@ public class Card {
      */
     private String avsCode;
 
+    private ThreeD threeD;
 
+    @Size(max = 20)
+    private String status;
+
+    @Size(max = 20)
+    private String transactionStatus;
+
+    public ExternalToken getExternalToken() {
+        return externalToken;
+    }
+
+    public void setExternalToken(ExternalToken externalToken) {
+        this.externalToken = externalToken;
+    }
+
+    public String getCcCardNumber() {
+        return ccCardNumber;
+    }
+
+    public void setCcCardNumber(String ccCardNumber) {
+        this.ccCardNumber = ccCardNumber;
+    }
+
+    public String getBin() {
+        return bin;
+    }
+
+    public void setBin(String bin) {
+        this.bin = bin;
+    }
+
+    public String getLast4Digits() {
+        return last4Digits;
+    }
+
+    public void setLast4Digits(String last4Digits) {
+        this.last4Digits = last4Digits;
+    }
+
+    public String getCcExpMonth() {
+        return ccExpMonth;
+    }
+
+    public void setCcExpMonth(String ccExpMonth) {
+        this.ccExpMonth = ccExpMonth;
+    }
+
+    public String getCcExpYear() {
+        return ccExpYear;
+    }
+
+    public void setCcExpYear(String ccExpYear) {
+        this.ccExpYear = ccExpYear;
+    }
+
+    public String getAcquirerId() {
+        return acquirerId;
+    }
+
+    public void setAcquirerId(String acquirerId) {
+        this.acquirerId = acquirerId;
+    }
+
+    public String getCvv2Reply() {
+        return cvv2Reply;
+    }
+
+    public void setCvv2Reply(String cvv2Reply) {
+        this.cvv2Reply = cvv2Reply;
+    }
+
+    public String getAvsCode() {
+        return avsCode;
+    }
+
+    public void setAvsCode(String avsCode) {
+        this.avsCode = avsCode;
+    }
+
+    public ThreeD getThreeD() {
+        return threeD;
+    }
+
+    public void setThreeD(ThreeD threeD) {
+        this.threeD = threeD;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTransactionStatus() {
+        return transactionStatus;
+    }
+
+    public void setTransactionStatus(String transactionStatus) {
+        this.transactionStatus = transactionStatus;
+    }
 }
