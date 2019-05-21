@@ -134,7 +134,6 @@ public class PaymentWorkflowTest  extends BaseTest {
                         "https://apmtest.gate2shop.com/nikolappp/defaultPending.do",
                         "https://apmtest.gate2shop.com/nikolappp/defaultSuccess.do", null)
                 .addPaymentOption(null)
-                .addUserAccountDetails(userAccountDetails)
                 .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 
