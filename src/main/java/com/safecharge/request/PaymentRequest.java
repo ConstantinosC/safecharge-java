@@ -120,6 +120,10 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
         this.relatedTransactionId = relatedTransactionId;
     }
 
+    public static PaymentRequest.Builder builder() {
+        return new PaymentRequest.Builder();
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentRequest{");
