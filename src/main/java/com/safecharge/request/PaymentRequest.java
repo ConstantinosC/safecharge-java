@@ -153,9 +153,6 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
         private String customData;
         private String relatedTransactionId;
 
-        public Builder() {
-        }
-
         public Builder addOrderId(String orderId) {
             this.orderId = orderId;
             return this;
