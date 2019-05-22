@@ -1,8 +1,6 @@
 package com.safecharge.response.model;
 
-import com.safecharge.model.Card;
-
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 /**
@@ -18,6 +16,7 @@ public class PaymentOption {
     @Size(max = 45)
     private String userPaymentOptionId;
     private String redirectURL;
+    @Valid
     private Card card;
 
     public String getUserPaymentOptionId() {
