@@ -1,18 +1,14 @@
 package com.safecharge.request;
 
-import com.safecharge.model.*;
-import com.safecharge.request.builder.SafechargeBuilder;
 import com.safecharge.request.builder.SafechargeOrderBuilder;
+import com.safecharge.request.model.PaymentOption;
 import com.safecharge.util.Constants;
 import com.safecharge.util.ValidChecksum;
 import com.safecharge.util.ValidationUtils;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Copyright (C) 2007-2019 SafeCharge International Group Limited.
