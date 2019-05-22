@@ -1,7 +1,5 @@
 package com.safecharge.request.model;
 
-import com.safecharge.model.CardData;
-import com.safecharge.model.SubMethodDetails;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -16,21 +14,22 @@ import java.util.Map;
  */
 public class PaymentOption {
 
-    private CardData cardData;
+    @Valid
+    private Card card;
 
     private Map<String, String> alternativePaymentMethod;
 
-    private String userPaymentOption;
+    private String userPaymentOptionId;
 
-    private SubMethodDetails subMethod;
+    @Valid
+    private SubMethod subMethod;
 
-
-    public CardData getCardData() {
-        return cardData;
+    public Card getCard() {
+        return card;
     }
 
-    public void setCardData(CardData cardData) {
-        this.cardData = cardData;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public Map<String, String> getAlternativePaymentMethod() {
@@ -41,28 +40,29 @@ public class PaymentOption {
         this.alternativePaymentMethod = alternativePaymentMethod;
     }
 
-    public String getUserPaymentOption() {
-         return userPaymentOption;
+    public String getUserPaymentOptionId() {
+        return userPaymentOptionId;
     }
 
-    public void setUserPaymentOption(String userPaymentOption) {
-        this.userPaymentOption = userPaymentOption;
+    public void setUserPaymentOptionId(String userPaymentOptionId) {
+        this.userPaymentOptionId = userPaymentOptionId;
     }
 
-    public SubMethodDetails getSubMethod() {
+
+    public SubMethod getSubMethod() {
         return subMethod;
     }
 
-    public void setSubMethod(SubMethodDetails subMethod) {
+    public void setSubMethod(SubMethod subMethod) {
         this.subMethod = subMethod;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("PaymentOption{");
-        sb.append("cardData=").append(cardData);
+        sb.append("card=").append(card);
         sb.append(", alternativePaymentMethod=").append(alternativePaymentMethod);
-        sb.append(", userPaymentOption='").append(userPaymentOption).append('\'');
+        sb.append(", userPaymentOptionId='").append(userPaymentOptionId).append('\'');
         sb.append(", subMethod=").append(subMethod);
         sb.append('}');
         return sb.toString();
