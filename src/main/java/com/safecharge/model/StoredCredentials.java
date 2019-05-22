@@ -4,12 +4,7 @@ import javax.validation.constraints.Size;
 
 public class StoredCredentials {
 
-    public StoredCredentials() {
-        super();
-    }
-
     public StoredCredentials(String storedCredentialsMode) {
-        super();
         this.storedCredentialsMode = storedCredentialsMode;
     }
 
