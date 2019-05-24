@@ -137,8 +137,8 @@ public class PaymentWorkflowTest  extends BaseTest {
                 .build();
         SafechargeResponse response = safechargeRequestExecutor.executeRequest(request);
 
-        Assert.assertTrue(response != null);
-        Assert.assertTrue(Constants.APIResponseStatus.SUCCESS.equals(response.getStatus()));
+        Assert.assertNotNull(response);
+        Assert.assertEquals(Constants.APIResponseStatus.SUCCESS,response.getStatus());
 
     }
 
