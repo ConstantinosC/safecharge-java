@@ -132,14 +132,14 @@ public class ValidationsTest {
 
     private static final UserAddress dummyValidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test", "Testov", "test@test.com", "0884123456", "Test street 1",
-                    "Sofia", "BG", null, "1000", "0884123456", "county billing");
+                    "Sofia", "BG", null, "1000", "0884123456", "county billing", null, null, null, null, null);
     private static final UserAddress dummyValidShippingDetails = dummyValidBillingDetails; //shipping address same as billing address
 
     private static final UserAddress dummyInvalidBillingDetails =
             AddressUtils.createUserAddressFromParams("Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "Test Long Name that should fail the validation! Test Long Name that should fail the validation! Test Long Name that should fail the validation!",
                     "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789-9", "0884123456", "Test street 1",
-                    "Sofia", "BG", null, "1000", "0884123456", "county bil 1");
+                    "Sofia", "BG", null, "1000", "0884123456", "county bil 1", null, null, null, null, null);
     private static final UserAddress dummyInvalidShippingDetails = dummyInvalidBillingDetails; //shipping address same as billing address
 
     private static final UrlDetails dummyValidUrlDetails = UrlUtils.createUrlDetails("https://apmtest.gate2shop.com/nikolappp/cashier/cancel.do",
@@ -655,8 +655,6 @@ public class ValidationsTest {
                 .addShippingDetails(dummyValidShippingDetails)
                 .addOrderId(dummyOrderId)
                 .addURLDetails(dummyValidUrlDetails)
-                .addTransactionType(Constants.TransactionType.Sale)
-                .addCardData(dummyCardData)
                 .build();
         assertTrue(safechargeRequest != null);
     }
@@ -673,8 +671,6 @@ public class ValidationsTest {
                     .addBillingDetails(dummyInvalidShippingDetails)
                     .addShippingDetails(dummyInvalidShippingDetails)
                     .addURLDetails(dummyInvalidUrlDetails)
-                    .addCardData(dummyCardData)
-                    .addUserPaymentOption(null, "12")
                     .build();
             fail(CONSTRAINT_VIOLATION_EXCEPTION_EXPECTED_BUT_OBJECT_CREATION_PASSED_SUCCESSFULLY);
         } catch (ConstraintViolationException e) {

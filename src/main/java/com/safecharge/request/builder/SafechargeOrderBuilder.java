@@ -214,8 +214,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param zip           The postal code of the recipient
      * @param cell          The cell number of the recipient
      * @param county        The county of the recipient
-     * @param addressLine2
-     * @param addressLine3
+     * @param addressLine2  The addressLine2 of the recipient
+     * @param addressLine3  The addressLine3 of the recipient
      * @return this object
      */
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
@@ -280,8 +280,8 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param cell          The cell number of the recipient
      * @param county        The county of the recipient
      * @param addressMatch
-     * @param addressLine2
-     * @param addressLine3
+     * @param addressLine2  The addressLine2 of the recipient
+     * @param addressLine3  The addressLine3 of the recipient
      * @param homePhone     The home phone number of the recipient
      * @param workPhone     The work phone number of the recipient
      * @return this object

@@ -176,6 +176,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
     }
 
     /**
+     * @deprecated  As of release 1.4, replaced by new overloaded method adds new parameters
      * Adds shipping info to the request.
      *
      * @param firstName The first name of the recipient
@@ -190,11 +191,39 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
      * @param cell      The cell number of the recipient
      * @return this object
      */
+    @Deprecated
     public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                 String state, String zip, String cell, String county) {
 
         UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                city, country, state, zip, cell, county);
+                city, country, state, zip, cell, county, null, null, null, null, null);
+
+        return addShippingDetails(userAddress);
+    }
+
+    /**
+     * Adds shipping info to the request.
+     *
+     * @param firstName     The first name of the recipient
+     * @param lastName      The last name of the recipient
+     * @param email         The email of the recipient
+     * @param phone         The phone number of the recipient
+     * @param address       The address of the recipient
+     * @param city          The city of the recipient
+     * @param country       The country of the recipient(two-letter ISO country code)
+     * @param state         The state of the recipient(two-letter ISO state code)
+     * @param zip           The postal code of the recipient
+     * @param cell          The cell number of the recipient
+     * @param county        The county of the recipient
+     * @param addressLine2  The addressLine2 of the recipient
+     * @param addressLine3  The addressLine3 of the recipient
+     * @return this object
+     */
+    public T addShippingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
+                                String state, String zip, String cell, String county, String addressLine2, String addressLine3) {
+
+        UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
+                city, country, state, zip, cell, county, addressLine2, addressLine3, null, null, null);
 
         return addShippingDetails(userAddress);
     }
@@ -212,6 +241,7 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
     }
 
     /**
+     * @deprecated  As of release 1.4, replaced by new overloaded method adds new parameters
      * Adds billing info to the request.
      *
      * @param firstName The first name of the recipient
@@ -226,11 +256,43 @@ public abstract class SafechargeBaseOrderBuilder<T extends SafechargeBaseOrderBu
      * @param cell      The cell number of the recipient
      * @return this object
      */
+    @Deprecated
     public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
                                String state, String zip, String cell, String county) {
 
         UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
-                city, country, state, zip, cell, county);
+                city, country, state, zip, cell, county, null, null, null, null, null);
+
+        return addBillingDetails(userAddress);
+    }
+
+    /**
+     * Adds billing info to the request.
+     *
+     * @param firstName     The first name of the recipient
+     * @param lastName      The last name of the recipient
+     * @param email         The email of the recipient
+     * @param phone         The phone number of the recipient
+     * @param address       The address of the recipient
+     * @param city          The city of the recipient
+     * @param country       The country of the recipient(two-letter ISO country code)
+     * @param state         The state of the recipient(two-letter ISO state code)
+     * @param zip           The postal code of the recipient
+     * @param cell          The cell number of the recipient
+     * @param county        The county of the recipient
+     * @param addressMatch
+     * @param addressLine2  The addressLine2 of the recipient
+     * @param addressLine3  The addressLine3 of the recipient
+     * @param homePhone     The home phone number of the recipient
+     * @param workPhone     The work phone number of the recipient
+     * @return this object
+     */
+    public T addBillingDetails(String firstName, String lastName, String email, String phone, String address, String city, String country,
+                               String state, String zip, String cell, String county, String addressMatch, String addressLine2, String addressLine3,
+                               String homePhone, String workPhone) {
+
+        UserAddress userAddress = AddressUtils.createUserAddressFromParams(firstName, lastName, email, phone, address,
+                city, country, state, zip, cell, county, addressLine2, addressLine3, addressMatch, homePhone, workPhone);
 
         return addBillingDetails(userAddress);
     }
