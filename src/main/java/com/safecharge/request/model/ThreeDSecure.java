@@ -1,5 +1,8 @@
 package com.safecharge.request.model;
 
+import com.safecharge.model.BrowserDetails;
+import com.safecharge.model.builder.NestedBuilder;
+
 import javax.validation.constraints.Size;
 
 public class ThreeDSecure {
@@ -60,6 +63,32 @@ public class ThreeDSecure {
 
     @Size(max = 2)
     private String challengeWindowSize;
+
+    private ThreeDSecure(Builder builder) {
+        setVersion(builder.version);
+        setChallengePreference(builder.challengePreference);
+        setNotificationURL(builder.notificationURL);
+        setMerchantURL(builder.merchantURL);
+        setPlatformType(builder.platformType);
+        setAppSdkInterface(builder.appSdkInterface);
+        setAppsSdkUIType(builder.appsSdkUIType);
+        setDeliveryEmail(builder.deliveryEmail);
+        setDeliveryTimeFrame(builder.deliveryTimeFrame);
+        setGiftCardAmount(builder.giftCardAmount);
+        setGiftCardCount(builder.giftCardCount);
+        setGiftCardCurrency(builder.giftCardCurrency);
+        setPreOrderDate(builder.preOrderDate);
+        setPreOrderPurchaseInd(builder.preOrderPurchaseInd);
+        setReorderItemsInd(builder.reorderItemsInd);
+        setShipIndicator(builder.shipIndicator);
+        setRebillExpiry(builder.rebillExpiry);
+        setRebillFrequency(builder.rebillFrequency);
+        setChallengeWindowSize(builder.challengeWindowSize);
+    }
+
+    public static ThreeDSecure.Builder builder() {
+        return new Builder();
+    }
 
     public String getVersion() {
         return version;
@@ -237,5 +266,126 @@ public class ThreeDSecure {
         sb.append(", challengeWindowSize='").append(challengeWindowSize).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public static final class Builder extends NestedBuilder<ThreeD.Builder, ThreeDSecure>  {
+        private String version;
+        private String challengePreference;
+        private String notificationURL;
+        private String merchantURL;
+        private String platformType;
+        private String appSdkInterface;
+        private String appsSdkUIType;
+        private String deliveryEmail;
+        private String deliveryTimeFrame;
+        private String giftCardAmount;
+        private String giftCardCount;
+        private String giftCardCurrency;
+        private String preOrderDate;
+        private String preOrderPurchaseInd;
+        private String reorderItemsInd;
+        private String shipIndicator;
+        private String rebillExpiry;
+        private String rebillFrequency;
+        private String challengeWindowSize;
+
+        public Builder addVersion(String version) {
+            this.version = version;
+            return this;
+        }
+
+        public Builder addChallengePreference(String challengePreference) {
+            this.challengePreference = challengePreference;
+            return this;
+        }
+
+        public Builder addNotificationURL(String notificationURL) {
+            this.notificationURL = notificationURL;
+            return this;
+        }
+
+        public Builder addMerchantURL(String merchantURL) {
+            this.merchantURL = merchantURL;
+            return this;
+        }
+
+        public Builder addPlatformType(String platformType) {
+            this.platformType = platformType;
+            return this;
+        }
+
+        public Builder addAppSdkInterface(String appSdkInterface) {
+            this.appSdkInterface = appSdkInterface;
+            return this;
+        }
+
+        public Builder addAppsSdkUIType(String appsSdkUIType) {
+            this.appsSdkUIType = appsSdkUIType;
+            return this;
+        }
+
+        public Builder addDeliveryEmail(String deliveryEmail) {
+            this.deliveryEmail = deliveryEmail;
+            return this;
+        }
+
+        public Builder addDeliveryTimeFrame(String deliveryTimeFrame) {
+            this.deliveryTimeFrame = deliveryTimeFrame;
+            return this;
+        }
+
+        public Builder addGiftCardAmount(String giftCardAmount) {
+            this.giftCardAmount = giftCardAmount;
+            return this;
+        }
+
+        public Builder addGiftCardCount(String giftCardCount) {
+            this.giftCardCount = giftCardCount;
+            return this;
+        }
+
+        public Builder addGiftCardCurrency(String giftCardCurrency) {
+            this.giftCardCurrency = giftCardCurrency;
+            return this;
+        }
+
+        public Builder addPreOrderDate(String preOrderDate) {
+            this.preOrderDate = preOrderDate;
+            return this;
+        }
+
+        public Builder addPreOrderPurchaseInd(String preOrderPurchaseInd) {
+            this.preOrderPurchaseInd = preOrderPurchaseInd;
+            return this;
+        }
+
+        public Builder addReorderItemsInd(String reorderItemsInd) {
+            this.reorderItemsInd = reorderItemsInd;
+            return this;
+        }
+
+        public Builder addShipIndicator(String shipIndicator) {
+            this.shipIndicator = shipIndicator;
+            return this;
+        }
+
+        public Builder addRebillExpiry(String rebillExpiry) {
+            this.rebillExpiry = rebillExpiry;
+            return this;
+        }
+
+        public Builder addRebillFrequency(String rebillFrequency) {
+            this.rebillFrequency = rebillFrequency;
+            return this;
+        }
+
+        public Builder addChallengeWindowSize(String challengeWindowSize) {
+            this.challengeWindowSize = challengeWindowSize;
+            return this;
+        }
+
+        public ThreeDSecure build() {
+            return new ThreeDSecure(this);
+        }
     }
 }

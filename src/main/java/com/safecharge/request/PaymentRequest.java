@@ -189,7 +189,7 @@ public class PaymentRequest extends SafechargeOrderDetailsRequest {
         }
 
         public SafechargeBaseRequest build() {
-            return ValidationUtils.validate(new PaymentRequest(this));
+            return ValidationUtils.validate(super.build(new PaymentRequest(this)));
         }
     }
 }

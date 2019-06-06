@@ -48,4 +48,14 @@ public class Item {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Item{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", price='").append(price).append('\'');
+        sb.append(", quantity='").append(quantity).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

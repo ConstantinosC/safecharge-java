@@ -1,5 +1,7 @@
 package com.safecharge.request.model;
 
+import com.safecharge.model.builder.NestedBuilder;
+
 import javax.validation.constraints.Size;
 
 public class SubMethod {
@@ -10,6 +12,16 @@ public class SubMethod {
     private String referenceId;
 
     private String email;
+
+    private SubMethod(Builder builder) {
+        setSubMethod(builder.subMethod);
+        setReferenceId(builder.referenceId);
+        setEmail(builder.email);
+    }
+
+    public static SubMethod.Builder builder() {
+        return new Builder();
+    }
 
     public String getSubMethod() {
         return subMethod;
@@ -43,6 +55,31 @@ public class SubMethod {
         sb.append(", email='").append(email).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public static final class Builder extends NestedBuilder<PaymentOption.Builder, SubMethod>  {
+        private String subMethod;
+        private String referenceId;
+        private String email;
+
+        public Builder addSubMethod(String subMethod) {
+            this.subMethod = subMethod;
+            return this;
+        }
+
+        public Builder addReferenceId(String referenceId) {
+            this.referenceId = referenceId;
+            return this;
+        }
+
+        public Builder addEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public SubMethod build() {
+            return new SubMethod(this);
+        }
     }
 }
 

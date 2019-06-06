@@ -152,6 +152,7 @@ public abstract class SafechargeOrderBuilder<T extends SafechargeOrderBuilder<T>
      * @param state       The state of the user(two-letter ISO state code)
      * @param zip         The postal code of the user
      * @param dateOfBirth The date of birth of the user
+     * @param county
      * @return this object
      */
     public T addUserDetails(String address, String city, String country, String email, String firstName, String lastName, String phone, String state,

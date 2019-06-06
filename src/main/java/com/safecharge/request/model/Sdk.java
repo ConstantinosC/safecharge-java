@@ -1,5 +1,7 @@
 package com.safecharge.request.model;
 
+import com.safecharge.model.builder.NestedBuilder;
+
 import javax.validation.constraints.Size;
 
 /**
@@ -28,6 +30,19 @@ public class Sdk {
 
     @Size(max = 36)
     private String transID;
+
+    private Sdk(Builder builder) {
+        setAppID(builder.appID);
+        setEncData(builder.encData);
+        setEphemPubKey(builder.ephemPubKey);
+        setMaxTimeout(builder.maxTimeout);
+        setReferenceNumber(builder.referenceNumber);
+        setTransID(builder.transID);
+    }
+
+    public static Sdk.Builder builder() {
+        return new Builder();
+    }
 
     public String getAppID() {
         return appID;
@@ -88,5 +103,51 @@ public class Sdk {
         sb.append(", transID='").append(transID).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public static final class Builder extends NestedBuilder<ThreeD.Builder, Sdk> {
+        private String appID;
+        private String encData;
+        private String ephemPubKey;
+        private String maxTimeout;
+        private String referenceNumber;
+        private String transID;
+
+        private Builder() {
+        }
+
+        public Builder withAppID(String appID) {
+            this.appID = appID;
+            return this;
+        }
+
+        public Builder withEncData(String encData) {
+            this.encData = encData;
+            return this;
+        }
+
+        public Builder withEphemPubKey(String ephemPubKey) {
+            this.ephemPubKey = ephemPubKey;
+            return this;
+        }
+
+        public Builder withMaxTimeout(String maxTimeout) {
+            this.maxTimeout = maxTimeout;
+            return this;
+        }
+
+        public Builder withReferenceNumber(String referenceNumber) {
+            this.referenceNumber = referenceNumber;
+            return this;
+        }
+
+        public Builder withTransID(String transID) {
+            this.transID = transID;
+            return this;
+        }
+
+        public Sdk build() {
+            return new Sdk(this);
+        }
     }
 }

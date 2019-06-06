@@ -1,6 +1,7 @@
 package com.safecharge.request.model;
 
 import com.safecharge.model.BrowserDetails;
+import com.safecharge.model.builder.NestedBuilder;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -20,7 +21,6 @@ public class ThreeD {
 
     private String dynamic3DMode;
 
-    @Size(max = 1)
     private String convertNoneEntrolled;
 
     @Valid
@@ -40,6 +40,22 @@ public class ThreeD {
     @Size(max = 1, message = "value is invalid.")
     @NotNull
     private String methodCompletionInd;
+
+    private ThreeD(Builder builder) {
+        setIsDynamic3D(builder.isDynamic3D);
+        setDynamic3DMode(builder.dynamic3DMode);
+        setConvertNoneEntrolled(builder.convertNoneEntrolled);
+        setExternalMpi(builder.externalMpi);
+        setBrowserDetails(builder.browserDetails);
+        setThreeDSecure(builder.threeDSecure);
+        setPaResponse(builder.paResponse);
+        setSdk(builder.sdk);
+        setMethodCompletionInd(builder.methodCompletionInd);
+    }
+
+    public static ThreeD.Builder builder(String methodCompletionInd) {
+        return new Builder(methodCompletionInd);
+    }
 
     public String getIsDynamic3D() {
         return isDynamic3D;
@@ -127,6 +143,87 @@ public class ThreeD {
         sb.append(", methodCompletionInd='").append(methodCompletionInd).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    public static final class Builder extends NestedBuilder<Card.Builder, ThreeD>  {
+        private String isDynamic3D;
+        private String dynamic3DMode;
+        private String convertNoneEntrolled;
+        private ExternalMpi externalMpi;
+        private BrowserDetails browserDetails;
+        private ThreeDSecure threeDSecure;
+        private String paResponse;
+        private Sdk sdk;
+        private String methodCompletionInd;
+
+        private Builder(String methodCompletionInd) {
+            this.methodCompletionInd = methodCompletionInd;
+        }
+        
+        public Builder addIsDynamic3D(String isDynamic3D) {
+            this.isDynamic3D = isDynamic3D;
+            return this;
+        }
+
+        public Builder addDynamic3DMode(String dynamic3DMode) {
+            this.dynamic3DMode = dynamic3DMode;
+            return this;
+        }
+
+        public Builder addConvertNoneEntrolled(String convertNoneEntrolled) {
+            this.convertNoneEntrolled = convertNoneEntrolled;
+            return this;
+        }
+
+        public Builder addExternalMpi(ExternalMpi externalMpi) {
+            this.externalMpi = externalMpi;
+            return this;
+        }
+
+        public ExternalMpi.Builder withExternalMpi() {
+            return ExternalMpi.builder().withParentBuilder(this);
+        }
+
+        public Builder addBrowserDetails(BrowserDetails browserDetails) {
+            this.browserDetails = browserDetails;
+            return this;
+        }
+
+        public BrowserDetails.Builder withBrowserDetails() {
+            return BrowserDetails.builder().withParentBuilder(this);
+        }
+
+        public Builder addThreeDSecure(ThreeDSecure threeDSecure) {
+            this.threeDSecure = threeDSecure;
+            return this;
+        }
+
+        public ThreeDSecure.Builder withThreeDSecure() {
+            return ThreeDSecure.builder().withParentBuilder(this);
+        }
+
+        public Builder addPaResponse(String paResponse) {
+            this.paResponse = paResponse;
+            return this;
+        }
+
+        public Builder addSdk(Sdk sdk) {
+            this.sdk = sdk;
+            return this;
+        }
+
+        public Sdk.Builder withSdk() {
+            return Sdk.builder().withParentBuilder(this);
+        }
+
+        public Builder addMethodCompletionInd(String methodCompletionInd) {
+            this.methodCompletionInd = methodCompletionInd;
+            return this;
+        }
+
+        public ThreeD build() {
+            return new ThreeD(this);
+        }
     }
 }
 

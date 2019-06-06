@@ -1,5 +1,7 @@
 package com.safecharge.model;
 
+import com.safecharge.model.builder.NestedBuilder;
+import com.safecharge.request.model.ThreeD;
 import javax.validation.constraints.Size;
 
 public class BrowserDetails {
@@ -31,6 +33,23 @@ public class BrowserDetails {
 
     @Size(max = 2048)
     private String userAgent;
+
+    private BrowserDetails(Builder builder) {
+        setAcceptHeader(builder.acceptHeader);
+        setIp(builder.ip);
+        setJavaEnabled(builder.javaEnabled);
+        setJavaScriptEnabled(builder.javaScriptEnabled);
+        setLanguage(builder.language);
+        setColorDepth(builder.colorDepth);
+        setScreenHeight(builder.screenHeight);
+        setScreenWidth(builder.screenWidth);
+        setTimeZone(builder.timeZone);
+        setUserAgent(builder.userAgent);
+    }
+
+    public static BrowserDetails.Builder builder() {
+        return new Builder();
+    }
 
     public String getAcceptHeader() {
         return acceptHeader;
@@ -108,7 +127,91 @@ public class BrowserDetails {
         return userAgent;
     }
 
-    public void setUserAgent(String userAgent) {
+    public void setUserAgent(String userAgent)  {
         this.userAgent = userAgent;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BrowserDetails{");
+        sb.append("acceptHeader='").append(acceptHeader).append('\'');
+        sb.append(", ip='").append(ip).append('\'');
+        sb.append(", javaEnabled='").append(javaEnabled).append('\'');
+        sb.append(", javaScriptEnabled='").append(javaScriptEnabled).append('\'');
+        sb.append(", language='").append(language).append('\'');
+        sb.append(", colorDepth='").append(colorDepth).append('\'');
+        sb.append(", screenHeight='").append(screenHeight).append('\'');
+        sb.append(", screenWidth='").append(screenWidth).append('\'');
+        sb.append(", timeZone='").append(timeZone).append('\'');
+        sb.append(", userAgent='").append(userAgent).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public static final class Builder extends NestedBuilder<ThreeD.Builder, BrowserDetails> {
+        private String acceptHeader;
+        private String ip;
+        private String javaEnabled;
+        private String javaScriptEnabled;
+        private String language;
+        private String colorDepth;
+        private String screenHeight;
+        private String screenWidth;
+        private String timeZone;
+        private String userAgent;
+
+        public Builder addAcceptHeader(String acceptHeader) {
+            this.acceptHeader = acceptHeader;
+            return this;
+        }
+
+        public Builder addIp(String ip) {
+            this.ip = ip;
+            return this;
+        }
+
+        public Builder addJavaEnabled(String javaEnabled) {
+            this.javaEnabled = javaEnabled;
+            return this;
+        }
+
+        public Builder addJavaScriptEnabled(String javaScriptEnabled) {
+            this.javaScriptEnabled = javaScriptEnabled;
+            return this;
+        }
+
+        public Builder addLanguage(String language) {
+            this.language = language;
+            return this;
+        }
+
+        public Builder addColorDepth(String colorDepth) {
+            this.colorDepth = colorDepth;
+            return this;
+        }
+
+        public Builder addScreenHeight(String screenHeight) {
+            this.screenHeight = screenHeight;
+            return this;
+        }
+
+        public Builder addScreenWidth(String screenWidth) {
+            this.screenWidth = screenWidth;
+            return this;
+        }
+
+        public Builder addTimeZone(String timeZone) {
+            this.timeZone = timeZone;
+            return this;
+        }
+
+        public Builder addUserAgent(String userAgent) {
+            this.userAgent = userAgent;
+            return this;
+        }
+
+        public BrowserDetails build() {
+            return new BrowserDetails(this);
+        }
     }
 }
